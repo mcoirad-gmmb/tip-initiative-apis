@@ -1,0 +1,95 @@
+openapi: 3.0.0
+info:
+  version: 5.1.0
+  title: Political Competitive Schema
+  description: Political Competitive Schema
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    SellerPoliticalCompetitives:
+      description: Political Competitive schema
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        order:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+      required:
+        - transactionHeader
+        - order
+    Order:
+      description: Individual Buy Information
+      properties:
+        id:
+          description: Buy Id
+          type: string
+        flightStart:
+          description: Start Date of Buy Flight
+          type: string
+        flightEnd:
+          description: End Date of Buy Flight
+          type: string
+        orderType:
+          description: >-
+            Media type of order
+          type: string
+          enum:
+            - NationalTV
+            - LocalTV
+            - NationalRadio
+            - LocalRadio
+            - NationalStreaming
+            - LocalStreaming
+        advertiser:
+          description: Name of advertiser purchasing the buy
+          type: string
+        affiliate:
+          description: Name of affiliate, if available
+          type: string
+        agency:
+          description: Name of agency purchasing the buy for advertiser
+          type: string
+        market:
+          description: Market in which the buy is airing
+          type: string
+        station:
+          description: Name of station buy is airing on
+          type: string
+        bandcode:
+          description: Suffix of station, if needed
+          type: string
+        spillstate:
+          description: Spillstate
+          type: array
+          items:
+            type: string
+        spotLength:
+          description: Length of Buy
+          type: string
+        week:
+          description: Week of Buy
+          type: string
+        spendTotal:
+          description: Dollar amount of buy (in dollars)
+          type: number
+      required:
+        - id
+        - flightStart
+        - flightEnd
+        - orderType
+        - advertiser
+        - agency
+        - market
+        - station
+        - spotLength
+        - week
+        - spendTotal

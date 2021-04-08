@@ -125,6 +125,8 @@
       $ref: './inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvails'
     SellerInventoryAvails:
       $ref: './inventoryAvailsSchemas.yaml#/components/schemas/SellerInventoryAvails'
+    SellerPoliticalCompetitives:
+      $ref: './politicalCompetitiveSchemas.yaml#/components/schemas/SellerPoliticalCompetitives'
     SellerInvoices:
       $ref: './invoiceSchemas.yaml#/components/schemas/SellerInvoices'
     LineDetail:

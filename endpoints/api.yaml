@@ -193,6 +193,8 @@ paths:
     $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'
   /seller/invoices:
     $ref: 'invoice.yaml#/paths/~1seller~1invoices'
+  /seller/politicalCompetitives:
+    $ref: 'politicalCompetitive.yaml#/paths/~1seller~1politicalCompetitives'
 components:
   securitySchemes:
     bearerAuth:

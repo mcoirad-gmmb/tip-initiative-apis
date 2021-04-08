@@ -1,0 +1,70 @@
+openapi: "3.0.0"
+info:
+  version: 5.1.0
+  title: Political Competitive
+  description: Allows the seller to send to the buyer political competitive information
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain./v5.x.x
+security:
+  - bearerAuth: []
+paths:
+  /seller/politicalCompetitives:
+    post:
+      tags:
+        - Seller
+      summary: Seller submits political competitive to a buyer
+      description: >-
+        Allows the seller to send to the buyer new political compettive (No Request from buyer is
+        Required)
+        Supported Transaction Types: New, Add, Revised, Delete
+      operationId: SellerPoliticalCompetitives
+      requestBody:
+        description: Political Competitive body included in request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SellerPoliticalCompetitives'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/SellerInvoiceNew.json'
+              Change:
+                value:
+                  $ref: 'examples/SellerInvoiceNew.json'
+              Cancel:
+                value:
+                  $ref: 'examples/GenericCancel.json'
+      responses:
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    SellerPoliticalCompetitives:
+      oneOf:
+        - $ref: './schemas/politicalCompetitiveSchemas.yaml#/components/schemas/PoliticalCompetitives'
