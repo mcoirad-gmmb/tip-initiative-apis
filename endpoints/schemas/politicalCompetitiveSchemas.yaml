@@ -25,35 +25,21 @@ components:
             $ref: '#/components/schemas/Order'
       required:
         - transactionHeader
-        - order
-    Order:
+        - politicalCompetitive
+    politicalCompetitive:
       description: Individual Buy Information
       properties:
         id:
           description: Buy Id
-          type: string
+          type: long
         flightStart:
           description: Start Date of Buy Flight
-          type: string
+          type: DateTime
         flightEnd:
           description: End Date of Buy Flight
-          type: string
-        orderType:
-          description: >-
-            Media type of order
-          type: string
-          enum:
-            - NationalTV
-            - LocalTV
-            - NationalRadio
-            - LocalRadio
-            - NationalStreaming
-            - LocalStreaming
+          type: DateTime
         advertiser:
-          description: Name of advertiser purchasing the buy
-          type: string
-        affiliate:
-          description: Name of affiliate, if available
+          description: Advertiser name
           type: string
         agency:
           description: Name of agency purchasing the buy for advertiser
@@ -64,32 +50,64 @@ components:
         station:
           description: Name of station buy is airing on
           type: string
-        bandcode:
-          description: Suffix of station, if needed
+        adSeconds:
+          description: Spot length in seconds
+          type: integer
+        totalDollars:
+          description: Total dollars for the spot length and scheduled week
+          type: decimal
+        state:
+          description: US state abbreviation
           type: string
-        spillstate:
-          description: Spillstate
-          type: array
-          items:
-            type: string
-        spotLength:
-          description: Length of Buy
+        repFirm:
+          description: Distributor or station group
           type: string
-        week:
-          description: Week of Buy
+        affiliate:
+          description: Affiliate name. Required for TV orders
           type: string
-        spendTotal:
-          description: Dollar amount of buy (in dollars)
-          type: number
+        bandCode:
+          description: TV or radio identifier
+          type: string
+          enum:
+            - tv
+            - fm
+            - am
+        cableBroadcastTag:
+          description: Cable or broadcast identifier
+          type: string
+          enum:
+            - cable
+            - broadcast
+            - radio
+            - satellite
+            - addressableCable
+        partyTag:
+          description: Party of the advertiser, ie, Republican or Democrat
+          type: string
+        issueCandidateTag:
+          description: Purpose; candidate or issue
+          type: string
+        electionTag:
+          description: Type and level of election
+          type: string
+        targetAudienceTag:
+          description: Audience or demographic targeted
+          type: string
+        raceTag:
+          description: Election race targeted
+          type: string
+        targetTag:
+          description: Political geo targeted
+          type: string
       required:
         - id
         - flightStart
         - flightEnd
-        - orderType
         - advertiser
         - agency
         - market
         - station
-        - spotLength
-        - week
-        - spendTotal
+        - adSeconds
+        - totalDollars
+        - state
+        - repFirm
